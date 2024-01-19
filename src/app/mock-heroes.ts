@@ -1,4 +1,6 @@
-import { Hero } from "./hero.model";
+// Lista ficticia de herois
+
+import { Hero } from "./hero.model"; // modelo do array a ser seguido
 
 export const HEROES: Hero[] = [
   {id: 1, name: 'Cyclops', power: 'Laser eyes'},
