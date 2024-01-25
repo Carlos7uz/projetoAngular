@@ -5,32 +5,41 @@ import { Injectable } from '@angular/core';
 import { Hero } from '../models/hero.model';
 import { HEROES } from './mock-heroes'
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class HeroService {
+  private heroesUrl = 'api/heroes';
+
+
 
   // constructor para obter os metodos do Service messages
-  constructor (private messageService: MessageService) {}
+  constructor (
+    private http: HttpClient,
+    private messageService: MessageService
+  ) {}
 
-  // getHeroes usa Observable para retornar um fluxo de valores com a interface padrao Hero[]
+
   getHeroes(): Observable<Hero[]> {
-    //heroes recebe a lista de herois pelo argumento of(emite separadamente e ordenado os valores de HEROES)
-    const heroes = of(HEROES);
+    return this.http.get<Hero[]>(this.heroesUrl)
 
-    //adiciona uma message que os herois foram pegos
-    this.messageService.add('HeroService: fetched heroes');
 
-    // faz com que quando a function getHeroes() for chamada ela retorne os herois que foram adicionados ->
-    // a const heroes
-    return heroes;
+    //const heroes = of(HEROES);
+    //this.log('fetched heroes');
+    //return heroes;
   }
 
   getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find(hero => hero.id === id)!; // busaca por id
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(hero); // retorna hero encontrado na busca
+    const hero = HEROES.find(hero => hero.id === id)!;
+    this.log(`fetched hero id=${id}`);
+    return of(hero);
   }
+
+  private log(message: string): void {
+    this.messageService.add(`HeroService: ${message}`)
+  }
+
 }

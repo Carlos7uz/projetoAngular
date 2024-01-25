@@ -5,15 +5,17 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found.component';
 
 const COMPONENTS = [
   ToolbarComponent,
-  MessagesComponent
+  MessagesComponent,
+  PageNotFoundComponent,
 ]
 const MODULES = [
   FlexLayoutModule,
   MaterialModule,
-  RouterModule
+  RouterModule,
 ]
 
 @NgModule({
