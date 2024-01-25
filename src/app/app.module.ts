@@ -1,15 +1,17 @@
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
+
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HeroesModule } from './heroes/heroes.module';
+
+import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -34,4 +36,5 @@ import { HeroesModule } from './heroes/heroes.module';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
