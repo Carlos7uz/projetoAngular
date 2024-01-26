@@ -3,8 +3,8 @@
 import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';
 import { Hero } from '../models/hero.model';
-import { HEROES } from './mock-heroes'
-import { Observable, of } from 'rxjs';
+//import { HEROES } from './mock-heroes'
+import { Observable, tap /*of*/ } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,9 +12,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class HeroService {
+
   private heroesUrl = 'api/heroes';
-
-
 
   // constructor para obter os metodos do Service messages
   constructor (
@@ -24,7 +23,9 @@ export class HeroService {
 
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http
+      .get<Hero[]>(this.heroesUrl)
+      .pipe(tap((heroes) => this.log(`fetched ${heroes.length} heroes`)));
 
 
     //const heroes = of(HEROES);
@@ -32,10 +33,13 @@ export class HeroService {
     //return heroes;
   }
 
+  // GET /heroes/id
   getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find(hero => hero.id === id)!;
-    this.log(`fetched hero id=${id}`);
-    return of(hero);
+    return this.http.get<Hero>(`${this.heroesUrl}/${id}`)
+
+    //const hero = HEROES.find(hero => hero.id === id)!;
+    //this.log(`fetched hero id=${id}`);
+    //return of(hero);
   }
 
   private log(message: string): void {

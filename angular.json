@@ -72,7 +72,8 @@
               "browserTarget": "angular-heroes:build:production"
             },
             "development": {
-              "browserTarget": "angular-heroes:build:development"
+              "browserTarget": "angular-heroes:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
