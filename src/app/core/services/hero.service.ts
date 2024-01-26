@@ -6,6 +6,7 @@ import { Hero } from '../models/hero.model';
 //import { HEROES } from './mock-heroes'
 import { Observable, tap /*of*/ } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = `${environment.baseUrl}/heroes`;
 
   // constructor para obter os metodos do Service messages
   constructor (
@@ -35,7 +36,9 @@ export class HeroService {
 
   // GET /heroes/id
   getHero(id: number): Observable<Hero> {
-    return this.http.get<Hero>(`${this.heroesUrl}/${id}`)
+    return this.http
+    .get<Hero>(`${this.heroesUrl}/${id}`)
+    .pipe(tap((hero) => this.log(`fetched hero id=${id} name=${hero.name} power=${hero.power}`)));
 
     //const hero = HEROES.find(hero => hero.id === id)!;
     //this.log(`fetched hero id=${id}`);
