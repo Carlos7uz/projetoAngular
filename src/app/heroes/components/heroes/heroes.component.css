@@ -3,3 +3,8 @@
   background-color: whitesmoke;
 }
 
+.add-button{
+  position: absolute;
+  right: 10px;
+  top: 205px;
+}

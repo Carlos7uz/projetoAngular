@@ -23,10 +23,14 @@ export class HeroService {
   ) {}
 
 
-  getHeroes(): Observable<Hero[]> {
+  getAllHeroes(): Observable<Hero[]> {
     return this.http
       .get<Hero[]>(this.heroesUrl)
-      .pipe(tap((heroes) => this.log(`fetched ${heroes.length} heroes`)));
+      .pipe(
+        tap((heroes) =>
+          this.log(`fetched ${heroes.length} heroes`)
+        )
+      );
 
 
     //const heroes = of(HEROES);
@@ -35,18 +39,49 @@ export class HeroService {
   }
 
   // GET /heroes/id
-  getHero(id: number): Observable<Hero> {
+  getOneHero(id: number): Observable<Hero> {
     return this.http
     .get<Hero>(`${this.heroesUrl}/${id}`)
-    .pipe(tap((hero) => this.log(`fetched hero id=${id} name=${hero.name} power=${hero.power}`)));
+    .pipe(
+      tap((hero) =>
+        this.log(`fetched ${this.descAttributes(hero)}`)
+      )
+    );
 
     //const hero = HEROES.find(hero => hero.id === id)!;
     //this.log(`fetched hero id=${id}`);
     //return of(hero);
   }
 
+  // POST /heroes
+  create(hero: Hero): Observable<Hero> {
+    return this.http
+    .post<Hero>(this.heroesUrl, hero)
+    .pipe(
+      tap((hero) =>
+        this.log(`updated ${this.descAttributes(hero)}`)
+      )
+    );
+  }
+
+  // PUT /heroes/id
+  update(hero: Hero): Observable<Hero> {
+    return this.http
+    .put<Hero>(`${this.heroesUrl}/${hero.id}`, hero)
+    .pipe(
+      tap((hero) =>
+        this.log(`updated ${this.descAttributes(hero)}`)
+      )
+    );
+  }
+
+  private descAttributes(hero: Hero): string {
+    return `hero id=${hero.id} name=${hero.name} power=${hero.power}`;
+  }
+
   private log(message: string): void {
-    this.messageService.add(`HeroService: ${message}`)
+    this.messageService
+    .add(`HeroService: ${message}`)
   }
 
 }
