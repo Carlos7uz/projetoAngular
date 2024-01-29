@@ -1,3 +1,4 @@
+// DESCONTINUADA!!
 // Lista ficticia de herois
 
 import { Hero } from "../models/hero.model"; // modelo do array a ser seguido
