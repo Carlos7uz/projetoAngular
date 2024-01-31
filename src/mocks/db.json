@@ -31,9 +31,14 @@
       "power": "Specialist of Chi"
     },
     {
-      "name": "Ben 1000",
-      "power": "Ominitrix",
-      "id": 7
+      "id": 7,
+      "name": "Ben 10",
+      "power": "Ominitrix"
+    },
+    {
+      "name": "Who is my hero?",
+      "power": "I need a hero?",
+      "id": 8
     }
   ]
 }
