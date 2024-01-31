@@ -5,6 +5,7 @@ import { HeroService } from "../../../core/services/hero.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component ({
   selector: 'app-hero-detail',
@@ -18,15 +19,16 @@ export class HeroDetailComponent implements OnInit {
 
   form = this.fb.group({
     id: [{ value: '', disabled: true }],
-    name: ['', Validators.required],
-    power: ['', Validators.required]
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    power: ['', [Validators.required, Validators.minLength(3)]]
   })
 
   constructor(
     private fb: FormBuilder,
     private heroService: HeroService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,8 @@ export class HeroDetailComponent implements OnInit {
       } as Hero;
 
       this.heroService.create(hero).subscribe(() => this.goBack());
+    } else {
+      this.showErrorMsg()
     }
   }
 
@@ -78,7 +82,15 @@ export class HeroDetailComponent implements OnInit {
       }
 
       this.heroService.update(hero).subscribe(() => this.goBack());
+    } else {
+      this.showErrorMsg()
     }
   }
 
+  private showErrorMsg(): void {
+    this.snackBar.open('Please check the errors found', 'Ok', {
+      duration:5000,
+      verticalPosition: 'bottom'
+    })
+  }
 }

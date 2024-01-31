@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Cyclops",
-      "power": "Laser eyes"
+      "power": "Laser Eyes"
     },
     {
       "id": 2,
@@ -36,9 +36,14 @@
       "power": "Ominitrix"
     },
     {
-      "name": "Who is my hero?",
-      "power": "I need a hero?",
-      "id": 8
+      "name": "Batman ",
+      "power": "Money ",
+      "id": 9
+    },
+    {
+      "name": "Hulk",
+      "power": "Super Strength",
+      "id": 10
     }
   ]
 }

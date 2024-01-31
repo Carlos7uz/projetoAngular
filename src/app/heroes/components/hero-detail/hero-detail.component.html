@@ -1,7 +1,7 @@
 
   <h1>{{ isEditing ? "Update" : "Create" }} Hero:</h1>
 
-  <form [formGroup]="form">
+  <form [formGroup]="form" novalidate>
     <mat-card>
       <mat-card-content fxLayout = "column">
         <mat-form-field *ngIf="isEditing">
@@ -12,12 +12,18 @@
         <mat-form-field>
           <mat-label>Hero Name:</mat-label>
           <input id = "name" formControlName="name" matInput placeholder = "Name" type = "text" />
+          <mat-error *ngIf="form.controls['name'].hasError('required')">Name is required</mat-error>
+          <mat-error *ngIf="form.controls['name'].hasError('minlength')">Name should contain at least 2 characters</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Hero Power:</mat-label>
           <input id="power" formControlName="power"  matInput placeholder = "Power" type = "text"/>
+
+          <mat-error *ngIf="form.controls['power'].hasError('required')">Power is required</mat-error>
+          <mat-error *ngIf="form.controls['power'].hasError('minlength')">Power should contain at least 3 characters</mat-error>
         </mat-form-field>
+
       </mat-card-content>
 
     <mat-card-actions>
