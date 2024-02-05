@@ -4,7 +4,7 @@ import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';
 import { Hero } from '../models/hero.model';
 //import { HEROES } from './mock-heroes'
-import { Observable, tap /*of*/ } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -53,6 +53,25 @@ export class HeroService {
     //return of(hero);
   }
 
+  // GET /heroes?name=term
+  search(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+
+    }
+
+    return this.http
+      .get<Hero[]>(`${this.heroesUrl}?name=${term}`)
+      .pipe(
+        tap((heroes) =>
+          heroes.length
+            ? this.log(`found ${heroes.length} heroes matching "${term}`)
+            : this.log(`no heroes matching "${term}"`)
+        )
+      )
+  }
+
+
   // POST /heroes
   create(hero: Hero): Observable<Hero> {
     return this.http
@@ -63,6 +82,7 @@ export class HeroService {
       )
     );
   }
+
 
   // PUT /heroes/id
   update(hero: Hero): Observable<Hero> {

@@ -31,18 +31,13 @@
       "power": "Specialist of Chi"
     },
     {
-      "id": 7,
-      "name": "Ben 10",
-      "power": "Ominitrix"
-    },
-    {
       "name": "Batman ",
       "power": "Money ",
       "id": 9
     },
     {
-      "name": "Hulk",
-      "power": "Super Strength",
+      "name": "Dragonborn",
+      "power": "Language of Dragons",
       "id": 10
     }
   ]
