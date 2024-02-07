@@ -3,3 +3,8 @@ mat-toolbar {
   font-size: 2.5rem; /* ou o tamanho desejado */
   height: 104px; /* ou a altura desejada */
 }
+
+a{
+  font-size:x-large;
+
+}

@@ -10,11 +10,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     //@angular
@@ -25,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
 
     //App
+    AuthModule,
     CoreModule,
     AppRoutingModule, // add from terminal ng g app-routing --flat --module=app
   ],

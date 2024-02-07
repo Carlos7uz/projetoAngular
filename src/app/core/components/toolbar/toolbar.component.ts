@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuItem } from '../../models/menu-item.module';
 
 @Component({
@@ -7,6 +7,13 @@ import { MenuItem } from '../../models/menu-item.module';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent{
+  @Input() isLoggedIn: boolean | null = null;
   @Input() title = '';
   @Input() menuItems: MenuItem[] = [];
+
+  @Output() private logout = new EventEmitter();
+
+  onLogout(): void{
+    this.logout.emit()
+  }
 }
