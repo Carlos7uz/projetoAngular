@@ -27,6 +27,9 @@ import { AuthModule } from './auth/auth.module';
     FlexLayoutModule,
     HttpClientModule,
 
+    //third-party
+    FlexLayoutModule,
+
     //App
     AuthModule,
     CoreModule,
